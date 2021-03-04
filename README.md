@@ -10,7 +10,7 @@ To install:	```pip install sheet```
 
 ```python
 from sheet import get_ipynb_cells, get_ipynb_cells_source
-filepath = '/Users/Thor.Whalen/Downloads/stream2py_pyaudio_and_dpp_struct_ideas.ipynb'
+filepath = '~/my_notebook_folder/some_notebook.ipynb'
 
 cells = get_ipynb_cells(filepath)
 assert type(cells), type(cells[0]) == (list, dict)
