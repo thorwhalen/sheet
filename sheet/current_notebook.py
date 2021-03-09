@@ -52,6 +52,7 @@ NotebookPathNotFound = object()
 
 
 def _get_path_of_notebook(url, token=None, kernel_id=None):
+    """Get the local filepath of the notebook pointed to by kernel_id (for the server defined by url and token)"""
     if "/api/sessions" not in url:
         url = urljoin(url, "/api/sessions")
     if token:  # None or ''
@@ -73,6 +74,7 @@ def _get_path_of_notebook(url, token=None, kernel_id=None):
 
 
 def get_path_of_current_notebook(kernel_id=None):
+    """Get the local filepath of the current notebook, from within notebook."""
     if kernel_id is None:
         kernel_id = get_current_kernel_id()
 
