@@ -1,12 +1,20 @@
 
 # sheet
-Tools to manipulate ipython (jupyter) notebooks
+Tools to extract content from ipython (jupyter) notebooks
 
 
 To install:	```pip install sheet```
 
-
 # Examples
+
+## Getting the filepath of the current notebook
+
+```python
+filepath = get_path_of_current_notebook()
+# Example: '~/my_notebook_folder/some_notebook.ipynb'
+```
+
+## Access to cells of a notebook given its filepath
 
 ```python
 from sheet import get_ipynb_cells, get_ipynb_cells_source
@@ -25,6 +33,8 @@ from sheet import get_ipynb_cells_full_text
 notebook_text = get_ipynb_cells_full_text(filepath)
 print(notebook_text)
 ```
+
+## Search the contents of a notebook
 
 ```python
 from sheet import SearchNotebooks
