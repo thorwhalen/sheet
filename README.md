@@ -17,7 +17,8 @@ filepath = get_path_of_current_notebook()
 ## Access to cells of a notebook given its filepath
 
 ```python
-from sheet import get_ipynb_cells, get_ipynb_cells_source
+
+from sheet.contents import get_ipynb_cells, get_ipynb_cells_source
 filepath = '~/my_notebook_folder/some_notebook.ipynb'
 
 cells = get_ipynb_cells(filepath)
@@ -29,15 +30,42 @@ assert type(cells), type(cells[0]) == (list, str)
 
 
 ```python
-from sheet import get_ipynb_cells_full_text
+
+from sheet.contents import get_ipynb_cells_full_text
 notebook_text = get_ipynb_cells_full_text(filepath)
 print(notebook_text)
 ```
 
-## Search the contents of a notebook
+
+## Search the cells of a single notebook
+
+Index and search the cells of a notebook
 
 ```python
-from sheet import SearchNotebooks
+from sheet import SingleNotebookSearch
+
+search = SingleNotebookSearch(src=None)  # if no filepath (src) to a notebook is given, will use the "current notebook"
+
+result_indices = search('lines iterize')
+print(result_indices)
+print("\n---- Contents of first hit ----")
+print(search[result_indices[0]])  # print the contents of the first result
+```
+
+    [70 225 226 198 199 196 200 201 193 197]
+    
+    ---- Contents of first hit ----
+    process_wf = Line(
+        partial(fixed_step_chunker, chk_size=DFLT_CHK_SIZE),
+        iterize(process_chk)
+    )
+        
+    
+## Search the contents of the notebooks under a directory
+
+```python
+
+from sheet.contents import SearchNotebooks
 
 search = SearchNotebooks('~/my_notebooks_folder', max_levels=0)  # enter max_levels=None for full recursive
 search('bayesian')

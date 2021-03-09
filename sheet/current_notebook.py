@@ -73,24 +73,41 @@ def _get_path_of_notebook(url, token=None, kernel_id=None):
     return NotebookPathNotFound  # if no found
 
 
-def get_path_of_current_notebook(kernel_id=None):
-    """Get the local filepath of the current notebook, from within notebook."""
-    if kernel_id is None:
-        kernel_id = get_current_kernel_id()
-
-    server = next(notebookapp.list_running_servers(), None)
+def first_server_found(server_filt=None):
+    """Get the server specs (a dict) of the first server found (that matches the filter, if given)."""
+    server = next(filter(server_filt, notebookapp.list_running_servers()), None)
     if server:
-        url, token, notebook_dir = (
-            server["url"],
-            server.get("token", None),
-            server["notebook_dir"],
-        )
-        notebook_path = _get_path_of_notebook(url, token, kernel_id)
-        if notebook_path is not NotebookPathNotFound:
-            return os.path.join(notebook_dir, notebook_path)
-        else:
-            raise RuntimeError(
-                f"No notebook path could be found for: {url}, {notebook_dir}, {token}"
-            )
+        return server
     else:
         raise ValueError("No notebook servers found.")
+
+
+def url_token_and_notebook_dir_of_first_server_found(server_filt=None):
+    """Get the (url, token, notebook_dir) of the first server found (that matches the filter, if given)"""
+    server = first_server_found(server_filt=server_filt)
+    url, token, notebook_dir = (
+        server["url"],
+        server.get("token", None),
+        server["notebook_dir"],
+    )
+    return url, token, notebook_dir
+
+
+def notebook_dir_of_first_server_found(server_filt=None):
+    """Notebook rootdir of the firtt server found (that matches the filter, if given)"""
+    _, _, notebook_dir = url_token_and_notebook_dir_of_first_server_found(server_filt=server_filt)
+    return notebook_dir
+
+
+def get_path_of_current_notebook(kernel_id=None, server_filt=None):
+    """Get the local filepath of the current notebook, from within notebook."""
+    url, token, notebook_dir = url_token_and_notebook_dir_of_first_server_found(server_filt=server_filt)
+    if kernel_id is None:
+        kernel_id = get_current_kernel_id()
+    notebook_path = _get_path_of_notebook(url, token, kernel_id)
+    if notebook_path is not NotebookPathNotFound:
+        return os.path.join(notebook_dir, notebook_path)
+    else:
+        raise RuntimeError(
+            f"No notebook path could be found for: {url}, {notebook_dir}, {token}"
+        )
