@@ -3,7 +3,7 @@ import os
 from operator import itemgetter
 
 from grub import SearchStore, camelcase_and_underscore_tokenizer
-from lined import Line, iterize
+from lined import Pipe, iterize
 from py2store import LocalBinaryStore
 
 
@@ -24,8 +24,8 @@ def get_byte_contents(src=None):
     return src
 
 
-get_ipynb_cells = Line(get_byte_contents, json.loads, itemgetter("cells"))
-get_ipynb_cells_source = Line(
+get_ipynb_cells = Pipe(get_byte_contents, json.loads, itemgetter("cells"))
+get_ipynb_cells_source = Pipe(
     get_ipynb_cells, iterize(itemgetter("source")), iterize("".join), list
 )
 
@@ -40,7 +40,7 @@ def text_for_cell(cell):
 
 
 cell_seperator = "\n\n#%% ############################\n\n"
-get_ipynb_cells_full_text = Line(
+get_ipynb_cells_full_text = Pipe(
     get_ipynb_cells, iterize(text_for_cell), cell_seperator.join
 )
 

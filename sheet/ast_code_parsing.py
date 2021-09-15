@@ -3,6 +3,9 @@ import re
 from ast import parse as ast_parse
 from enum import Enum
 
+# Note: Originally made in `sheet` package, so sync maintenance with that, or extract to
+# common tool
+
 try:
     # Try ast.parse (3.9+)
     from ast import unparse as ast_unparse
@@ -11,7 +14,9 @@ except ImportError:
         from astunparse import unparse as ast_unparse
     except ModuleNotFoundError:
         raise ModuleNotFoundError(
-            "Can't find a ast unparse function -- you'll need python 3.9+ or (pip/conda) install astunparse")
+            "Can't find a ast unparse function -- you'll need python 3.9+ or "
+            '(pip/conda) install astunparse'
+        )
 
 
 def code_blocks(code_str: str, include_line_numbers=True):
@@ -54,12 +59,18 @@ def code_blocks(code_str: str, include_line_numbers=True):
 
 
 single_leading_space = re.compile(r'^\s')
-assert list(map(lambda x: single_leading_space.sub('', x),
-                ['no space', ' one space', '  two spaces'])) == ['no space', 'one space', ' two spaces']
+assert list(
+    map(
+        lambda x: single_leading_space.sub('', x),
+        ['no space', ' one space', '  two spaces'],
+    )
+) == ['no space', 'one space', ' two spaces']
 
 all_space = re.compile(r'^\s*$')
-assert list(map(lambda x: bool(all_space.match(x)),
-                [' \t\n\r', ' some non space'])) == [True, False]
+assert list(map(lambda x: bool(all_space.match(x)), [' \t\n\r', ' some non space'])) == [
+    True,
+    False,
+]
 
 line_starts_with_comment_re = re.compile(r'^\s*#')
 
@@ -67,11 +78,12 @@ _test_examples = [
     '# comment',
     '  \t  # comment',
     '# comment # another',
-    '  this is # comment'
+    '  this is # comment',
 ]
 
-assert list(map(lambda x: bool(line_starts_with_comment_re.match(x)),
-                _test_examples)) == [True, True, True, False]
+assert list(
+    map(lambda x: bool(line_starts_with_comment_re.match(x)), _test_examples)
+) == [True, True, True, False]
 
 Annot = Enum('Annot', 'CODE COMMENT SPACE')
 
@@ -109,17 +121,4 @@ def annotate_lines(code_str):
             yield Annot.CODE, line
 
 
-#single_leading_space.sub('', line[m.end(0):])
-
-class MyMixin:
-    def foo(self):
-        return self.x + self.y
-
-
-class A(MyMixin):
-    def __init__(self, x=0):
-        self.x = x
-
-
-a = A(10)  # no problem
-a.foo()  # problem!
+# single_leading_space.sub('', line[m.end(0):])

@@ -10,7 +10,7 @@ import json
 from ipykernel.connect import get_connection_file
 from notebook import notebookapp
 
-from lined import Line, iterize, mk_filter
+from lined import iterize, mk_filter, Pipe
 
 
 def _jupyter_notebook_list():
@@ -26,14 +26,14 @@ def _jupyter_notebook_list():
         )
 
 
-jupyter_notebook_list_lines = Line(
+jupyter_notebook_list_lines = Pipe(
     _jupyter_notebook_list,
     lambda x: x.split("\n"),
     mk_filter(lambda line: line.startswith("http")),
 )
 jupyter_notebook_list_lines.__doc__ = "Runs the jupyter notebook list command and returns a list extracted from the parsed string"
 
-jupyter_notebooks_url_and_rootdir = Line(
+jupyter_notebooks_url_and_rootdir = Pipe(
     jupyter_notebook_list_lines,
     iterize(lambda line: tuple(line.split(" :: "))),
 )
@@ -41,7 +41,7 @@ jupyter_notebooks_url_and_rootdir.__doc__ = (
     "Get (url, rootdir) pairs of currently running notebooks."
 )
 
-get_current_kernel_id = Line(
+get_current_kernel_id = Pipe(
     get_connection_file,
     os.path.basename,
     lambda filename: filename.split("-", 1)[1].split(".")[0],
