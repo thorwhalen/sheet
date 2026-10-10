@@ -3,7 +3,7 @@ import tokenize
 from itertools import groupby
 from io import BytesIO
 
-from typing import Callable
+from collections.abc import Callable
 
 
 # NothingYet = type('NothingYet', (object,), {})
