@@ -8,7 +8,10 @@ from urllib.parse import urljoin
 import json
 
 from ipykernel.connect import get_connection_file
-from notebook import notebookapp
+try:  # modern jupyter (notebook >= 7 is built on jupyter_server)
+    from jupyter_server import serverapp as _server_app
+except ImportError:  # pragma: no cover  (legacy notebook < 7)
+    from notebook import notebookapp as _server_app
 
 from lined import iterize, mk_filter, Pipe
 
@@ -75,7 +78,7 @@ def _get_path_of_notebook(url, token=None, kernel_id=None):
 
 def first_server_found(server_filt=None):
     """Get the server specs (a dict) of the first server found (that matches the filter, if given)."""
-    server = next(filter(server_filt, notebookapp.list_running_servers()), None)
+    server = next(filter(server_filt, _server_app.list_running_servers()), None)
     if server:
         return server
     else:
@@ -88,7 +91,8 @@ def url_token_and_notebook_dir_of_first_server_found(server_filt=None):
     url, token, notebook_dir = (
         server["url"],
         server.get("token", None),
-        server["notebook_dir"],
+        # jupyter_server calls it root_dir; legacy notebook servers, notebook_dir
+        server.get("root_dir") or server["notebook_dir"],
     )
     return url, token, notebook_dir
 
