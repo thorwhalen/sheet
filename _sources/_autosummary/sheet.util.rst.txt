@@ -1,0 +1,13 @@
+sheet.util
+==========
+
+.. automodule:: sheet.util
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      code_snippets
+      comment_or_other
+   

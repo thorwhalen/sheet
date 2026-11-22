@@ -1,0 +1,23 @@
+# sheet
+
+> Tools to extract content from ipython (jupyter) notebooks
+
+
+## Pages
+
+- [sheet](index.html.md): Tools to extract content from ipython (jupyter) notebooks
+- [API reference](api.html.md): | &#96;sheet&#96;   | Grab stuff from an ipython/jupyter notebook.   |
+- [sheet](_autosummary/sheet.html.md): Grab stuff from an ipython/jupyter notebook.
+- [sheet.ast_code_parsing](_autosummary/sheet.ast_code_parsing.html.md): Tools to parse code
+- [sheet.contents](_autosummary/sheet.contents.html.md): Read the cells of ipynb notebooks and search them (one notebook, or a directory of them).
+- [sheet.current_notebook](_autosummary/sheet.current_notebook.html.md): Old code that was used to do things like get notebook lists, urls/rootdir thereof, kernel ids
+- [sheet.util](_autosummary/sheet.util.html.md): General utils
+- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-11-22 17:15 UTC&#42;&#42; from commit &lt;a href="https://github.com/tho...
+
+## Optional
+
+- [sheet.md](sheet.md): Complete documentation in a single file.
+
+## Build
+
+- [build_info.json](build_info.json): build provenance (commit, version, tool versions, whether the docs match the package)

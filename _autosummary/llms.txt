@@ -1,0 +1,16 @@
+# sheet
+
+> Tools to extract content from ipython (jupyter) notebooks
+
+
+## Pages in this subsection
+
+- [sheet](sheet.html.md): Grab stuff from an ipython/jupyter notebook.
+- [sheet.ast_code_parsing](sheet.ast_code_parsing.html.md): Tools to parse code
+- [sheet.contents](sheet.contents.html.md): Read the cells of ipynb notebooks and search them (one notebook, or a directory of them).
+- [sheet.current_notebook](sheet.current_notebook.html.md): Old code that was used to do things like get notebook lists, urls/rootdir thereof, kernel ids
+- [sheet.util](sheet.util.html.md): General utils
+
+## Optional
+
+- [Top-level llms.txt](../llms.txt): Complete documentation index.

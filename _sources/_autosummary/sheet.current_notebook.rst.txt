@@ -1,0 +1,15 @@
+sheet.current\_notebook
+=======================
+
+.. automodule:: sheet.current_notebook
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      first_server_found
+      get_path_of_current_notebook
+      notebook_dir_of_first_server_found
+      url_token_and_notebook_dir_of_first_server_found
+   

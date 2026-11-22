@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "built_at": "2026-11-22T17:15:03Z",
+  "package": {
+    "name": "sheet",
+    "version": "0.0.5",
+    "display_name": "sheet",
+    "source": "pyproject.toml"
+  },
+  "git": {
+    "available": true,
+    "commit": "513f45bab8caaa0366e5a4d3a37784d3cf41a9b9",
+    "short_commit": "513f45b",
+    "branch": "master",
+    "tags": [],
+    "dirty": false,
+    "remote_url": "https://github.com/thorwhalen/sheet",
+    "commit_url": "https://github.com/thorwhalen/sheet/commit/513f45bab8caaa0366e5a4d3a37784d3cf41a9b9",
+    "error": null
+  },
+  "ci": {
+    "provider": "github",
+    "repository": "thorwhalen/sheet",
+    "sha": "513f45bab8caaa0366e5a4d3a37784d3cf41a9b9",
+    "sha_in_history": true,
+    "ref": "refs/heads/master",
+    "ref_name": "master",
+    "run_id": "45048157324",
+    "run_url": "https://github.com/thorwhalen/sheet/actions/runs/45048157324",
+    "server_url": "https://github.com"
+  },
+  "tools": {
+    "epythet": "0.2.23",
+    "sphinx": "9.1.1",
+    "docutils": "0.22.4",
+    "python": "3.12.16"
+  },
+  "config": {
+    "theme": "auto",
+    "html_theme": "sphinxawesome_theme",
+    "accent": "#5b5e00",
+    "mode": "auto",
+    "api_generator": "autosummary",
+    "ignore": [
+      "tests/",
+      "scrap/",
+      "examples/"
+    ],
+    "agent_outputs": true,
+    "aggregates": [
+      "md"
+    ],
+    "ai_artifacts": true,
+    "provenance": true,
+    "docs_dir": "docsrc"
+  },
+  "site": {
+    "modules_documented": 5,
+    "objects_documented": 9
+  },
+  "pypi": {
+    "checked": true,
+    "latest": "0.0.5",
+    "relation": "same",
+    "error": null
+  },
+  "reproduce": "git clone https://github.com/thorwhalen/sheet && cd sheet\ngit checkout 513f45bab8caaa0366e5a4d3a37784d3cf41a9b9\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "warnings": [],
+  "alignment": {
+    "aligned": true,
+    "notes": []
+  }
+}

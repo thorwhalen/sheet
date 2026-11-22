@@ -1,0 +1,21 @@
+sheet.contents
+==============
+
+.. automodule:: sheet.contents
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      default_src
+      get_byte_contents
+      text_for_cell
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      SearchNotebooks
+      SingleNotebookSearch
+   
