@@ -1,3 +1,4 @@
+"""Read the cells of ipynb notebooks and search them (one notebook, or a directory of them)."""
 import json
 import os
 from operator import itemgetter
