@@ -42,7 +42,7 @@ def code_blocks(code_str: str, include_line_numbers=True):
     2
     >>> print(block)
     def foo(a, b):
-        return (a + b)
+        return a + b
     >>> lineno, block = blocks[1]
     >>> lineno
     5
